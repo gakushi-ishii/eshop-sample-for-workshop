@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "node .github/hooks/scripts/dependency-guard.mjs",
+        "powershell": "node .github/hooks/scripts/dependency-guard.mjs",
+        "timeoutSec": 60
+      }
+    ]
+  }
+}
