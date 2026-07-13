@@ -10,10 +10,10 @@ GitHub Copilot の異なる使い方（**ローカル Agent Mode** と **Coding 
 | # | タイトル | 内容 |
 | :-: | --- | --- |
 | 00 | [概要とアプリの全体像](./00-overview.md) | アプリ概要・技術スタック・ディレクトリ構成・課題の使い分けルール |
-| 01 | [セットアップ](./01-setup.md) | ローカル（native / Docker）/ クラウド / Devcontainer とコマンド一覧 |
-| 02 | [課題A：商品詳細ページを作る](./02-challenge-a-product-detail.md) | ローカル Agent Mode（画面を見ながら実装） |
-| 03 | [課題B：検索の価格ソート／絞り込み](./03-challenge-b-search-sort.md) | Coding Agent（Issue→PR・CI で検証） |
-| 04 | [PR をローカルで検証する](./04-review-and-verify-pr.md) | Coding Agent が作った PR の動作確認・承認 |
+| 01 | [現在のアプリを起動して確認する](./01-explore-current-app.md) | 現状調査・npm 起動・Browser Canvas 操作・課題発見 |
+| 02 | [商品詳細ページを作る](./02-challenge-a-product-detail.md) | ローカル Agent Mode・差分確認・Browser Canvas 検証 |
+| 03 | [検索の価格ソート／絞り込みを任せる](./03-challenge-b-search-sort.md) | Coding Agent（Issue → PR → CI） |
+| 04 | [Coding Agent の PR を検証する](./04-review-and-verify-pr.md) | 差分・テスト・ビルド・Browser Canvas・レビュー |
 
 ---
 
