@@ -77,7 +77,7 @@ npm view react-router-dom version engines peerDependencies --json
 プロジェクトから新しいセッションを作成し、**New worktree** を選ぶ。プロンプトを実行して初めて新しいワークスペースが作成されるため、以下 Shell コマンドを実行する。
 
 ```shell
-git branch
+git status
 ```
 
 1, 2分ほど時間を置いたらターミナルで `npm ls` を実行し、パッケージがインストールされていることを確認する。
