@@ -58,5 +58,6 @@ GitHub Copilot ハンズオンの教材である。機能や構成の現状は R
 
 ## Git / GitHub 運用
 
-エージェントによるブランチ、Issue、コミット、push、Pull Request の運用は、
-自動読込対象のルート `AGENTS.md` に従う。
+エージェントによる Git / GitHub 運用の不変条件は、自動読込対象のルート
+`AGENTS.md` に従う。GitHub Copilot App のローカル worktree では、ファイル変更から
+コミット承認までの具体的な手順を `.github/skills/git-workflow/SKILL.md` に従って進める。
