@@ -47,7 +47,16 @@ npm view react-router-dom version engines peerDependencies --json
 > 公開 npm レジストリへ直接アクセスできない環境では、所属組織が指定するレジストリをユーザーまたはマシン単位で設定してから npm のコマンドを再実行する。
 > 組織固有のレジストリ URL や認証情報は、リポジトリの `.npmrc` に追加しないこと。
 
-### 5. Setup スクリプトに `npm ci` を設定する
+Setup の前に、開いたターミナルで現在の参照先と疎通を確認します。
+
+```shell
+npm config get registry
+npm view react-router-dom version engines peerDependencies --json
+```
+
+メタデータ取得が失敗した場合は、所属組織のネットワーク・パッケージ管理手順に従ってレジストリを設定してから次のステップに進んでください。
+
+### 4. Setup スクリプトに `npm ci` を設定する
 
 追加したリポジトリを右クリック → **Settings** → **Scripts** で、Setup スクリプトを開き、次を設定して **Save** する。
 
@@ -57,22 +66,23 @@ npm view react-router-dom version engines peerDependencies --json
 
 新しいワークスペース作成時に `package-lock.json` どおりの依存がインストールされる。
 
-### 6. 新しいワークツリーにパッケージがインストールされた状態でセッションを開く
+### 5. 新しいワークツリーを作成し、自動でセットアップされたことを確認する。
 
 プロジェクトから新しいセッションを作成し、**New worktree** を選ぶ。Shell コマンドで以下を実行する。
+プロンプトを実行して初めて新しいワークスペースが作成されるため、一旦 Shell コマンドを実行している。
 
 ```shell
 git branch
 ```
 
-> [!IMPORTANT]
-> 新しいセッションを開き、プロンプトを実行して初めてワークスペースが作成されるため、一旦 Shell コマンドを実行している。
+1, 2分ほど時間を置いたらターミナルで `npm ls` を実行し、パッケージがインストールされていることを確認する。
 
 > [!TIP]
 > - ワークツリーのメリットを享受できる。
 > - Setup スクリプトで初回に毎度 `npm ci` が実行されるため、すべてのワークツリーで `package-lock.json` に準拠した依存関係バージョンが使用できる。
 
-### 7. Run と Canvas を確認する
+
+### 6. Run と Canvas を確認する
 
 右上の **Run** でアプリを起動し、**Browser Canvas** で商品一覧が表示されることを確認する。
 
