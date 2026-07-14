@@ -15,6 +15,9 @@
 
 サイドバーの「Sessions」>「＋」ボタンから **Add project from > GitHub repository...** を選び、Fork した Outdoor eShop リポジトリを追加する。
 
+Fork の **Actions** タブで workflow が無効と表示される場合は、**I understand my
+workflows, go ahead and enable them** を選び、Lab 02 で CI を実行できる状態にする。
+
 ### 2. Quick Chat を試す
 
 リポジトリに接続が出来たら、サイドバーの「Chats」から New Chat を開きます。リポジトリアイコン (Mode の右) から、先程追加したリポジトリを選択し、以下プロンプトを実行する。
@@ -71,7 +74,7 @@ npm view react-router-dom version engines peerDependencies --json
 プロジェクトから新しいセッションを作成し、**New worktree** を選ぶ。プロンプトを実行して初めて新しいワークスペースが作成されるため、以下 Shell コマンドを実行する。
 
 ```shell
-git branch
+git branch --show-current
 ```
 
 1, 2分ほど時間を置いたらターミナルで `npm ls` を実行し、パッケージがインストールされていることを確認する。
@@ -79,6 +82,8 @@ git branch
 > [!TIP]
 > - ワークツリーのメリットを享受できる。
 > - Setup スクリプトで初回に毎度 `npm ci` が実行されるため、すべてのワークツリーで `package-lock.json` に準拠した依存関係バージョンが使用できる。
+> - セッションごとに短命な作業ブランチが自動生成される。生成された名前をそのまま使用し、
+>   `main` への反映は Pull Request で行う。
 
 ### 6. Run と Canvas を確認する
 
@@ -89,6 +94,7 @@ git branch
 - Fork したリポジトリがプロジェクトに追加されている。
 - Setup スクリプトで依存がインストールされている。
 - New worktree のセッションが作成され、起動している。
+- `main` とは別の自動生成された作業ブランチ上にいる。
 - セッション上の shell コマンドで worktree の状態と npm レジストリへの疎通が確認できている。
 - Run でアプリが起動し、Canvas で表示できる。
 

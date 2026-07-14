@@ -64,14 +64,15 @@ CI（npm ci / npm test / npm run build）の状態と、依存関係に不要な
 このワークショップで体験した SDLC:
 
 ```text
-調査 → ローカル実装（依存追加でガードレール発火）→ Release PR（CI で再確認）
+調査 → ローカル実装（依存追加でガードレール発火）→ Feature PR（CI で再確認）
 → 運用バグ Issue → Cloud Agent → Fix PR → 人によるレビュー
 ```
 
-- **方針（Custom Instructions）** が実装の前提をそろえ、
-- **手順（Skill）** が正しい依存追加を導き、
-- **機械検証（Hook）** が事故を編集直後に止め、
-- **CI** がサーバー側で最終確認し、
+- **プロジェクトの前提（Custom Instructions）** が技術判断をそろえ、
+- **SDLC ルール（AGENTS）** が Human-in-the-loop と Skill の起動条件を示し、
+- **実行手順（Skills）** が依存追加と Git workflow を導き、
+- **即時検証（Hook）** が事故を編集直後に検知し、
+- **Pull Request 検証（CI）** がサーバー側で再確認し、
 - **Issue と PR** が運用の証跡として残る。
 
 会話に頼らず、リポジトリ自体がコンテキストとガードレールを持つ状態を「AI Ready」と呼ぶ。

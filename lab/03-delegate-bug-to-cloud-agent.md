@@ -55,9 +55,10 @@ Cloud Agent が Issue を受けて作業を開始し、やがて PR を作成す
 - 受け入れ条件を含む Bug Issue。
 - Issue が Cloud Agent に割り当てられ、作業が始まっている。
 
-> Cloud Agent は `main` の `copilot-instructions.md` と Issue を読んで作業する。
-> Lab 01 で仕込んだ依存ルールが、Cloud Agent の PR にも効くかを Lab 05 で確認する。
+> Cloud Agent は `main` の Instructions、AGENTS、Skills と Issue を読んで作業する。
+> Cloud Agent のコミットと Pull Request はプラットフォームが管理し、人は Lab 05 で
+> Issue、差分、テスト、CI を根拠にレビューする。
 
 ---
 
-← [Lab 02](./02-release-pr.md) ・ 次へ → [Lab 04: 新しいセッションへ引き継ぐ](./04-handoff-to-new-session.md)
+← [Lab 02](./02-feature-pr.md) ・ 次へ → [Lab 04: 新しいセッションへ引き継ぐ](./04-handoff-to-new-session.md)
