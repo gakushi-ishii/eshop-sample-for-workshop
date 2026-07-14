@@ -1,4 +1,4 @@
-# Lab 00: プロジェクトの準備を進めながら、GitHub Copilot App の基本的な使い方を学ぶ
+# Lab 00: GitHub Copilot App の基本的な使い方を学ぶ
 
 **テーマ:** GitHub Copilot App のセットアップと Preflight
 
