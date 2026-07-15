@@ -26,10 +26,9 @@
 
 ## Skill の起動
 
-- GitHub Copilot App のローカル worktree でファイルの作成・編集・削除を伴う依頼では、最初の編集前に
-  `.github/skills/git-workflow/SKILL.md` を読み、その手順に従う。
-- `package.json` / `package-lock.json` / `tsconfig*.json` の変更や依存追加では、あわせて `.github/skills/add-dependency-safely/SKILL.md` に従う。
-- 相談、調査、レビュー、計画、読み取り、コマンド実行だけの依頼では `git-workflow` を起動しない。
+- GitHub Copilot App のローカルワークツリーで実装計画の依頼 (Plan モード) やファイルの作成・編集・削除を伴う依頼では、最初の編集前に  `.github/skills/git-workflow/SKILL.md` を読み、その手順に従う。
+- `package.json` / `package-lock.json` / `tsconfig*.json` の変更や依存追加を行う、実装計画時に依存追加を検討する際は、あわせて `.github/skills/add-dependency-safely/SKILL.md` に従う。
+- 調査、レビュー、簡易的な質問・確認、読み取りだけの依頼では `git-workflow` を起動しない。
 
 ## ハンズオン教材の分離
 
