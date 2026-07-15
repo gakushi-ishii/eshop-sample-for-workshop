@@ -9,7 +9,7 @@
 Outdoor eShop は、登山・キャンプ向けアウトドア用品店の EC サンプルアプリ。
 GitHub Copilot ハンズオンの教材である。機能や構成の現状は README とコードを正とする。
 
-## 実行環境と技術スタック（ガードレールの根拠）
+## 実行環境と技術スタック
 
 このリポジトリのコードは、次の環境で動くことを前提とする。実装判断はこの前提に従うこと。
 
@@ -26,38 +26,23 @@ GitHub Copilot ハンズオンの教材である。機能や構成の現状は R
 `package-lock.json`、`tsconfig*.json` の実体を優先し、この文書も同期して更新する。
 依存宣言は `package.json`、具体的に解決された依存ツリーは `package-lock.json` を正とする。
 
-## 依存関係のルール（重要）
+## 依存関係のルール
 
 新しいパッケージの追加や `package.json` / `package-lock.json` / `tsconfig*.json` の変更は、
 環境依存の事故（手元では動くが他環境や CI で壊れる）を生みやすい。次を必ず守ること。
 
-- 標準 API や既存依存で代替できる場合は、新しいランタイム依存を追加しない。
 - `package.json` を変更したら `npm install` で `package-lock.json` を同期し、
   `npm ci` が成功する状態を保つ。lockfile は手で編集しない。
 - 追加パッケージは Node 20 / React 18 と互換でなければならない。
 - `tsconfig` の `target` / `module` / `moduleResolution` は原則変更しない。
-- **ブラウザ実行前提のコードに Node 専用 API（`fs`、`path`、`process` 依存など）を持ち込まない。**
-
-依存を追加・更新するとき、または依存・TypeScript 設定を変更するときは、編集前に
-`.github/skills/add-dependency-safely/SKILL.md` を読み、その手順に従う。
+- ブラウザ実行前提のコードに Node 専用 API（`fs`、`path`、`process` 依存など）を持ち込まない。
 
 ## 検証
 
-- アプリケーションコード、テスト、ビルド設定を変更した場合は、
-  完了前に `npm test` と `npm run build` を実行する。
-- `package.json` または `package-lock.json` を変更した場合は、上記に加えて
-  `npm ci` が成功することを確認する。
-- Markdown などドキュメントだけの変更では、専用の検証コマンドがない限り
-  `npm test` と `npm run build` は不要とする。
+- アプリケーションコード、テスト、ビルド設定を変更した場合は、完了前に `npm test` と `npm run build` を実行する。
+- Markdown などドキュメントだけの変更では、専用の検証コマンドがない限り `npm test` と `npm run build` は不要とする。
 
 ## 変更範囲とレビュー
 
-- 課題と無関係な変更や、説明のない依存追加・設定変更を行わない。
 - 既存の React / TypeScript / CSS の構成とデザインを尊重する。
 - 実装後は、変更したファイルと設計上の判断、テスト結果を簡潔に説明する。
-
-## Git / GitHub 運用
-
-エージェントによる Git / GitHub 運用の不変条件は、自動読込対象のルート
-`AGENTS.md` に従う。GitHub Copilot App のローカル worktree では、ファイル変更から
-コミット承認までの具体的な手順を `.github/skills/git-workflow/SKILL.md` に従って進める。

@@ -105,7 +105,7 @@ git status
 
 ![Browser Canvas に表示された Outdoor eShop](./images/00-run-browser-canvas.png)
 
-## 期待する結果
+## 本ラボで期待する結果
 
 - Fork したリポジトリがプロジェクトに追加されている。
 - Quick Chat が応答を返す。

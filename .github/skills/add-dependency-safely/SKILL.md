@@ -1,77 +1,51 @@
 ---
 name: add-dependency-safely
-description: "新しい npm パッケージ（ランタイム/開発依存）を追加・更新するときの安全な手順。package.json / package-lock.json / tsconfig を変更する前に読む。WHEN: dependency, package, npm install, package.json, package-lock.json, react-router, 依存追加, ライブラリ追加, パッケージ追加"
+description: "新しい npm パッケージ（ランタイム/開発依存）を追加・更新するときの安全な手順。実装計画時の追加パッケージ選定や package.json / package-lock.json / tsconfig を変更する前に読む。"
 ---
 
-# 依存を安全に追加する
+# 依存パッケージを安全に追加する
 
-新しいパッケージを追加するときの手順。環境依存の事故（手元では動くが、他の担当者の
-`npm ci` や CI で壊れる）を防ぐことが目的。判断の前提は `.github/copilot-instructions.md`
+判断の前提は `.github/copilot-instructions.md`
 の「実行環境と技術スタック」を参照する。
-
-## いつ使うか
-
-- ランタイム依存（`dependencies`）や開発依存（`devDependencies`）を追加・更新するとき
-- `package.json` / `package-lock.json` / `tsconfig*.json` を変更するとき
+パッケージ追加時の制約は「依存関係のルール」を参照する。
 
 ## 手順
 
-### 1. 必要性と代替案を確認する
+### 1. 追加パッケージの必要性を確認する
 
-- その依存で何を解決するかを一言で説明できるようにする。
-- 標準 API（`Intl`、`URL`、`fetch` など）や既存依存で代替できないか確認する。
-- 代替できない理由が説明できる場合だけ追加へ進む。
+- そのパッケージで何を解決するかを一言で説明できるようにする。
+- 候補が複数ある場合は各特徴と比較評価、推奨をユーザーに提示し、選択させる。
 
 ### 2. 互換性を確認する
 
-- 追加候補の `engines`（Node）と peerDependencies（React 等）を確認する。
-- **Node 20 / React 18.3 と互換であること。** React 19 専用などの非互換版を選ばない。
+- 追加候補の `engines`（Node）と peerDependencies（React 等）を確認する。特定バージョンを確認したい場合は `<package-name>@<version>` を指定する。
+  ```shell
+  npm view <package-name> version engines peerDependencies --json
+  ```
+- 取得結果が互換基準（copilot-instructions.md「実行環境と技術スタック」）を満たすか確認する。
 - 型定義が必要な場合（`@types/*`）も合わせて確認する。
+- 非互換は選択肢から除外し、手順 1 のパッケージ選定に戻る。 
 
 ### 3. 追加して lockfile を同期する
 
-- `package.json` を直接手編集して終わりにしない。**`npm install <pkg>` を実行して
-  `package-lock.json` を同期する**（バージョン範囲を固定したい場合も `npm install` で反映）。
-- `npm ci` が通る状態（`package.json` と `package-lock.json` が整合）を保つ。
-
-```shell
-npm install <package-name>
-```
+- `package.json` を直接手編集して終わらず、 `npm install <pkg>` を実行し `package-lock.json` を同期する（バージョン範囲を固定したい場合も `npm install` で反映）。
+- `npm ci` が通り、`package.json` と `package-lock.json` が整合していることを確認したら次の手順へ。
 
 ### 4. 型とビルドへの影響を確認する
 
-- `tsconfig` は原則変更しない。変更が必要な場合は `target` / `module` / `moduleResolution`
-  を避け、影響範囲を説明する。
-- 型チェックを実行する。
-
-```shell
-npm run build
-```
+型チェックとビルドが正常に完了することを確認する。
+  ```shell
+  npm run build
+  ```
 
 ### 5. 判断を記録する
 
-- 新しいランタイム依存、またはテスト・ビルド方式を変える依存を採用した場合は、
-  `docs/decisions/` に短い ADR（30 行以内）を残す。
+- 新しいランタイム依存、またはテスト・ビルド方式を変える依存を採用した場合は、`docs/decisions/` に短い ADR（30 行以内）を残す。
   - 何を追加したか、なぜ必要か、却下した代替案、影響（バンドル・互換）
 - 既存依存の定型的な patch 更新など、方式を変えない変更では ADR は不要とする。
 - INDEX があれば ADR を追加したときだけ更新する。
 
 ### 6. 検証して報告する
 
-- `npm test` と `npm run build` を実行する。
-- 追加した依存、lockfile 同期の有無、テスト結果を報告する。
+- 追加した依存、lockfile 同期結果、型チェック、ビルド結果を報告する。
 - 未解決事項（peer 警告など）は成功扱いにせず明記する。
-
-## やってはいけないこと
-
-- `package.json` だけ変更して `package-lock.json` を同期しない（`npm ci` が失敗する）。
-- lockfile を手で編集する。
-- 目的を説明できない依存を「便利そう」で追加する。
-- `tsconfig` の解決方式を安易に変更する。
-
-## 補足: postToolUse フックによる自動チェック
-
-このリポジトリでは、`package.json` / `package-lock.json` / `tsconfig*.json` を編集すると
-`.github/hooks/` の依存ガードが自動で走り、lockfile 不整合・環境非互換・型エラーを
-追加コンテキストとして警告する。フック自体は変更をブロックしないため、警告を確認して
-上の検証手順を必ず実行すること。

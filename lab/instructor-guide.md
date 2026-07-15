@@ -17,7 +17,7 @@
 ## AI Ready な役割分担（仕込み済み）
 
 - `.github/copilot-instructions.md` — プロジェクトの前提（実行環境・技術スタック・依存ルール）
-- `AGENTS.md` — SDLC ルール（作業ブランチ・Human-in-the-loop・Skill 起動条件）
+- `AGENTS.md` — SDLC ルール（GitHub Flow・Human-in-the-loop・Issue 対応・Skill 起動条件）
 - `.github/skills/` — 実行手順（依存追加・ローカル Git workflow）
 - `.github/hooks/hooks.json` + `scripts/dependency-guard.mjs` — 即時検証（lockfile 同期・環境互換・型チェック）
 - `.github/workflows/ci.yml` — Pull Request 検証（`npm ci`・test・build）
