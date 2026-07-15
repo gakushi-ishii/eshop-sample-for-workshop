@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Lab ガードのローカルなモード設定 (テンプレートは .env.sample を追跡)
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

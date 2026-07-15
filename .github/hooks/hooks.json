@@ -5,8 +5,15 @@
       {
         "type": "command",
         "matcher": "view|grep|rg|glob|bash|powershell|task|web_fetch|web_search",
-        "bash": "node .github/hooks/scripts/lab-access-guard.mjs",
-        "powershell": "node .github/hooks/scripts/lab-access-guard.mjs",
+        "bash": "node .github/hooks/scripts/file-access-guard.mjs read",
+        "powershell": "node .github/hooks/scripts/file-access-guard.mjs read",
+        "timeoutSec": 10
+      },
+      {
+        "type": "command",
+        "matcher": "edit|create|bash|powershell",
+        "bash": "node .github/hooks/scripts/file-access-guard.mjs write",
+        "powershell": "node .github/hooks/scripts/file-access-guard.mjs write",
         "timeoutSec": 10
       }
     ],
