@@ -72,7 +72,18 @@ npm view react-router-dom version engines peerDependencies --json
 
 この設定をしておくと、新しいワークスペース作成時に `package-lock.json` どおりの依存がインストールされる。
 
-### 5. 新しいワークツリーを作成し、自動でパッケージがインストールされたことを確認する。
+### 5. ブランチのプレフィックスを設定して GitHub Flow に沿った命名にする
+
+追加したリポジトリを右クリック → **Settings** で、**Branch prefix override** をオンにし、
+プレフィックスに `feature/` を入力して保存する。プレビューが `feature/my-feature` のように
+表示されることを確認する。
+
+![Branch prefix override に feature/ を設定する画面](./images/00-branch-prefix-override.png)
+
+この設定をしておくと、次の手順 6 で作成するワークツリーのブランチ名に `feature/` が自動で付与され、
+GitHub Flow に沿った「feature ブランチ → Pull Request → `main`」の運用をデモできる。
+
+### 6. 新しいワークツリーを作成し、自動でパッケージがインストールされたことを確認する。
 
 プロジェクトから新しいセッションを作成し、**New worktree** を選ぶ。プロンプトを実行して初めて新しいワークスペースが作成されるため、以下 Shell コマンドを実行する。
 
@@ -87,10 +98,11 @@ git status
 > [!TIP]
 > - ワークツリーのメリットを享受できる。
 > - Setup スクリプトで初回に毎度 `npm ci` が実行されるため、すべてのワークツリーで `package-lock.json` に準拠した依存関係バージョンが使用できる。
-> - セッションごとに短命な作業ブランチが自動生成される。生成された名前をそのまま使用し、
->   `main` への反映は Pull Request で行う。
+> - セッションごとに `feature/` プレフィックスの付いた短命な作業ブランチが自動生成される。
+>   実装を始める Lab で `feature/` に続く部分を作業項目が分かる名前へリネームし、
+>   `main` への反映は Pull Request で行う（GitHub Flow）。
 
-### 6. Run と Canvas を確認する
+### 7. Run と Canvas を確認する
 
 右上の **Run** でアプリを起動し、**Browser Canvas** で商品一覧が表示されることを確認する。
 
@@ -100,8 +112,9 @@ git status
 
 - Fork したリポジトリがプロジェクトに追加されている。
 - Setup スクリプトで依存がインストールされている。
+- Branch prefix override に `feature/` が設定されている。
 - New worktree のセッションが作成され、起動している。
-- `main` とは別の自動生成された作業ブランチ上にいる。
+- `main` とは別の、`feature/` プレフィックスが付いた自動生成の作業ブランチ上にいる。
 - セッション上の shell コマンドで worktree の状態と npm レジストリへの疎通が確認できている。
 - Run でアプリが起動し、Canvas で表示できる。
 
