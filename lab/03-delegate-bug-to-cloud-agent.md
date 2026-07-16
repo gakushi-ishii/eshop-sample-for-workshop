@@ -1,15 +1,14 @@
 # Lab 03: 運用バグを Cloud Agent へ委託する
 
-**テーマ:** 運用フェーズで見つかったバグを Issue にし、Cloud Agent に修正を委託する
+**テーマ:** 運用チームから上がった Issue を、Cloud Agent に修正を委託する
 
 ## シナリオ
 
 リリース後、利用者から「複数キーワードで検索すると 0 件になる」という報告が届いた。
 `キャンプ テント` のようにスペース区切りで検索すると、商品名に両方の語が含まれていても
-ヒットしない。このバグを Issue 化し、GitHub Copilot App から Cloud Agent へ委託する。
+ヒットしない。このバグに関して Issue を立ち上げ、GitHub Copilot App から Cloud Agent へ委託する。
 
-これは既存 SDLC への AI 組み込み例。開発フェーズ（Lab 01）はローカル Agent、
-運用フェーズのバグ修正は Cloud Agent という使い分けを体験する。
+これまでの Lab では GitHub Copilot App で GitHub Native なローカルエージェントの活用を体験したが、本ラボでは Issue 起点でのバグ修正を Cloud Agent に委任する流れを体験する。
 
 ## 前提条件
 
@@ -18,9 +17,11 @@
 
 ## 手順
 
-### 1. バグを再現する
+### 1. バグを確認する
 
-Browser Canvas で検索ボックスに `キャンプ テント`（半角スペース）と入力し、
+1. GitHub Copilot App で該当プロジェクトから **[New Session]** を開き、**Local repository** を選択して、`git status` を実行する。
+2. 先程 Lab 02 で PR 経由でマージした変更をローカルの main に反映させるために、右上の **[Pull]** を押す。
+3. Browser Canvas で検索ボックスに `キャンプ テント`（半角スペース）と入力し、
 0 件になることを確認する。全角スペース `キャンプ　テント` でも同様。
 
 ### 2. Issue を作成する
