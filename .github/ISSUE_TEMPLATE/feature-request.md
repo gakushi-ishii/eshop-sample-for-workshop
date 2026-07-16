@@ -1,7 +1,7 @@
 ---
 name: 機能追加
 about: 新しい機能や既存機能の改善を提案する
-title: "[Feature]"
+title: "[Feature] "
 labels: enhancement
 assignees: ''
 
