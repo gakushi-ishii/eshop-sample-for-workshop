@@ -58,7 +58,8 @@ describe('searchProducts', () => {
 
   it('元の商品配列を変更しない', () => {
     const snapshot = [...sample];
-    searchProducts(sample, 'キャンプ テント');
+    const result = searchProducts(sample, 'キャンプ テント');
     expect(sample).toEqual(snapshot);
+    expect(result).not.toBe(sample);
   });
 });
