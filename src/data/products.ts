@@ -69,3 +69,10 @@ export const products: Product[] = [
     imageUrl: '/images/product9.png',
   },
 ];
+
+/**
+ * id から商品を1件取得する。該当がなければ undefined を返す。
+ */
+export function getProductById(id: number): Product | undefined {
+  return products.find((product) => product.id === id);
+}
